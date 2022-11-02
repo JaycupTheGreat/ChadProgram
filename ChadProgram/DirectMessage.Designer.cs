@@ -39,21 +39,21 @@
             // 
             this.lstMessages.FormattingEnabled = true;
             this.lstMessages.ItemHeight = 15;
-            this.lstMessages.Location = new System.Drawing.Point(60, 12);
+            this.lstMessages.Location = new System.Drawing.Point(12, 11);
             this.lstMessages.Name = "lstMessages";
             this.lstMessages.Size = new System.Drawing.Size(340, 214);
             this.lstMessages.TabIndex = 0;
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(60, 232);
+            this.txtMessage.Location = new System.Drawing.Point(12, 231);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(259, 23);
             this.txtMessage.TabIndex = 1;
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(325, 231);
+            this.btnSend.Location = new System.Drawing.Point(277, 231);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);
             this.btnSend.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 290);
+            this.ClientSize = new System.Drawing.Size(369, 262);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.lstMessages);

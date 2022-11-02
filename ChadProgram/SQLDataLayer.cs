@@ -180,7 +180,6 @@ namespace ChadProgram
             string qry = $"insert into chat values('{ChatWindow.Username}',getdate(),'{message}')";
             ret = ExecuteNonQuery(qry);
             return ret;
-
         }
 
         public bool SendDirectMessage(string recipient, string message)
@@ -220,9 +219,50 @@ foreign key (receiver) references Users(Username)
             ExecuteNonQuery(createUser);
             ExecuteNonQuery(createChat);
             ExecuteNonQuery(createDirectMessages);
+            ExecuteNonQuery("create table Groups(GroupID int not null identity(1,1), GroupName varchar(20) not null, primary key(GroupID));");
+            ExecuteNonQuery("create table GroupUsers(\r\nGroupID int not null, \r\nusername varchar(30) not null, \r\nprimary key(GroupID, username), \r\nforeign key (username) references users(username), \r\nforeign key (groupid) references groups(groupid))");
+            ExecuteNonQuery("create table GroupChat(\r\ngroupID int not null,\r\nusername varchar(30) not null, \r\nmessage_date datetime not null,\r\nmessage varchar(150),\r\nprimary key(username, message_date))");
         }
 
         public List<string> GetDirectChatMessages(string them)
+        {
+            List<string> messages = new List<string>();
+
+            string qry = $@"select * from DirectMessage 
+where (sender = '{ChatWindow.Username}' 
+and receiver = '{them}') 
+or (Sender = '{them}' and receiver = '{ChatWindow.Username}') 
+order by Message_Date asc";
+
+
+            SqlConnection conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(qry, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    //gets the current message from the db because we are reading line by line
+                    string currentMessage = reader[0] + ":" + reader[3];
+                    messages.Add(currentMessage);
+                    //object tmp = reader[0];
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+            //ExecuteDataReader("select * from chat");
+
+            return messages;
+        }
+
+        public List<string> GetGroups(string them)
         {
             List<string> messages = new List<string>();
 

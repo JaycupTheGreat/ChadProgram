@@ -66,12 +66,13 @@
             // 
             // btnGetMessages
             // 
-            this.btnGetMessages.Location = new System.Drawing.Point(156, 294);
+            this.btnGetMessages.Location = new System.Drawing.Point(464, 6);
             this.btnGetMessages.Name = "btnGetMessages";
             this.btnGetMessages.Size = new System.Drawing.Size(75, 23);
             this.btnGetMessages.TabIndex = 3;
             this.btnGetMessages.Text = "button1";
             this.btnGetMessages.UseVisualStyleBackColor = true;
+            this.btnGetMessages.Visible = false;
             this.btnGetMessages.Click += new System.EventHandler(this.btnGetMessages_Click);
             // 
             // timer1
@@ -92,10 +93,10 @@
             // 
             this.lstUsers.FormattingEnabled = true;
             this.lstUsers.ItemHeight = 15;
-            this.lstUsers.Location = new System.Drawing.Point(429, 30);
+            this.lstUsers.Location = new System.Drawing.Point(410, 34);
             this.lstUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstUsers.Name = "lstUsers";
-            this.lstUsers.Size = new System.Drawing.Size(305, 244);
+            this.lstUsers.Size = new System.Drawing.Size(129, 214);
             this.lstUsers.TabIndex = 5;
             this.lstUsers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstUsers_MouseDoubleClick);
             // 
@@ -103,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(559, 286);
             this.Controls.Add(this.lstUsers);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.btnGetMessages);
