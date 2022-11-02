@@ -20,7 +20,7 @@ namespace ChadProgram
         {
             //if connstring is blank
             if (connString == "") //connectionstring from config
-                connectionString = ConfigurationManager.ConnectionStrings["remoteconnection"].ConnectionString;
+                connectionString = ConfigurationManager.ConnectionStrings["localconnection"].ConnectionString;
             else //otherwise whatever was passed in
                 connectionString = connString;
         }
@@ -262,28 +262,23 @@ order by Message_Date asc";
             return messages;
         }
 
-        public List<string> GetGroups(string them)
+
+        // TO DO
+        public List<string> GetGroups()
         {
             List<string> messages = new List<string>();
-
-            string qry = $@"select * from DirectMessage 
-where (sender = '{ChatWindow.Username}' 
-and receiver = '{them}') 
-or (Sender = '{them}' and receiver = '{ChatWindow.Username}') 
-order by Message_Date asc";
-
 
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand(qry, conn);
+                SqlCommand cmd = new SqlCommand("select groupname from groups", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     //gets the current message from the db because we are reading line by line
-                    string currentMessage = reader[0] + ":" + reader[3];
-                    messages.Add(currentMessage);
+                    string currentUser = reader[0].ToString();
+                    messages.Add(currentUser);
                     //object tmp = reader[0];
                 }
             }
@@ -298,6 +293,55 @@ order by Message_Date asc";
             //ExecuteDataReader("select * from chat");
 
             return messages;
+        }
+
+        public List<string> GetGroupChatMessages(string group)
+        {
+            List<string> messages = new List<string>();
+
+//            string qry = $@"select * from DirectMessage 
+//where (sender = '{ChatWindow.Username}' 
+//and receiver = '{them}') 
+//or (Sender = '{them}' and receiver = '{ChatWindow.Username}') 
+//order by Message_Date asc";
+
+
+            //SqlConnection conn = new SqlConnection(connectionString);
+            //try
+            //{
+            //    conn.Open();
+            //    SqlCommand cmd = new SqlCommand(qry, conn);
+            //    SqlDataReader reader = cmd.ExecuteReader();
+            //    while (reader.Read())
+            //    {
+            //        //gets the current message from the db because we are reading line by line
+            //        string currentMessage = reader[0] + ":" + reader[3];
+            //        messages.Add(currentMessage);
+            //        //object tmp = reader[0];
+            //    }
+            //}
+            //catch
+            //{
+
+            //}
+            //finally
+            //{
+            //    conn.Close();
+            //}
+            //ExecuteDataReader("select * from chat");
+
+            return messages;
+        }
+
+        public bool SendGroupMessage(string group, string recipient, string message)
+        { //think this should work? no error checking here tho
+            bool ret = true;
+
+            string qry = $"insert into GroupChat values (group, '{ChatWindow.Username}','{recipient}',getdate(),'{message}')";
+            ret = ExecuteNonQuery(qry);
+
+
+            return ret;
         }
     }
 }

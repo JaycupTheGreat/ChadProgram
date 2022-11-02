@@ -5,7 +5,7 @@ namespace ChadProgram
 {
     public partial class Form1 : Form
     {
-        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["remoteconnection"].ConnectionString);
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["localconnection"].ConnectionString);
         public Form1()
         {
             InitializeComponent();

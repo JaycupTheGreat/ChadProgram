@@ -90,5 +90,17 @@ namespace ChadProgram
                 dm.Show();
             }
         }
+
+        private void btnNotifications_Click(object sender, EventArgs e)
+        {
+            //open the notifications form here
+        }
+
+        private void btnGroups_Click(object sender, EventArgs e)
+        {
+            //open groupchat form here
+            GroupChat gp = new GroupChat();
+            gp.Show();
+        }
     }
 }

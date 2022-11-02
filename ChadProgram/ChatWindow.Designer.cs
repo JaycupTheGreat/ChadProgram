@@ -36,6 +36,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblUsername = new System.Windows.Forms.Label();
             this.lstUsers = new System.Windows.Forms.ListBox();
+            this.btnNotifications = new System.Windows.Forms.Button();
+            this.btnGroups = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstMessages
@@ -66,9 +68,9 @@
             // 
             // btnGetMessages
             // 
-            this.btnGetMessages.Location = new System.Drawing.Point(464, 6);
+            this.btnGetMessages.Location = new System.Drawing.Point(97, 6);
             this.btnGetMessages.Name = "btnGetMessages";
-            this.btnGetMessages.Size = new System.Drawing.Size(75, 23);
+            this.btnGetMessages.Size = new System.Drawing.Size(129, 23);
             this.btnGetMessages.TabIndex = 3;
             this.btnGetMessages.Text = "button1";
             this.btnGetMessages.UseVisualStyleBackColor = true;
@@ -100,6 +102,26 @@
             this.lstUsers.TabIndex = 5;
             this.lstUsers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstUsers_MouseDoubleClick);
             // 
+            // btnNotifications
+            // 
+            this.btnNotifications.Location = new System.Drawing.Point(410, 6);
+            this.btnNotifications.Name = "btnNotifications";
+            this.btnNotifications.Size = new System.Drawing.Size(129, 23);
+            this.btnNotifications.TabIndex = 3;
+            this.btnNotifications.Text = "Notifications";
+            this.btnNotifications.UseVisualStyleBackColor = true;
+            this.btnNotifications.Click += new System.EventHandler(this.btnNotifications_Click);
+            // 
+            // btnGroups
+            // 
+            this.btnGroups.Location = new System.Drawing.Point(410, 254);
+            this.btnGroups.Name = "btnGroups";
+            this.btnGroups.Size = new System.Drawing.Size(129, 23);
+            this.btnGroups.TabIndex = 3;
+            this.btnGroups.Text = "Open Groups";
+            this.btnGroups.UseVisualStyleBackColor = true;
+            this.btnGroups.Click += new System.EventHandler(this.btnGroups_Click);
+            // 
             // ChatWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -107,6 +129,8 @@
             this.ClientSize = new System.Drawing.Size(559, 286);
             this.Controls.Add(this.lstUsers);
             this.Controls.Add(this.lblUsername);
+            this.Controls.Add(this.btnGroups);
+            this.Controls.Add(this.btnNotifications);
             this.Controls.Add(this.btnGetMessages);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
@@ -127,5 +151,7 @@
         private System.Windows.Forms.Timer timer1;
         private Label lblUsername;
         private ListBox lstUsers;
+        private Button btnNotifications;
+        private Button btnGroups;
     }
 }
