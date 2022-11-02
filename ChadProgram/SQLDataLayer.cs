@@ -221,7 +221,7 @@ foreign key (receiver) references Users(Username)
             ExecuteNonQuery(createDirectMessages);
             ExecuteNonQuery("create table Groups(GroupID int not null identity(1,1), GroupName varchar(20) not null, primary key(GroupID));");
             ExecuteNonQuery("create table GroupUsers(\r\nGroupID int not null, \r\nusername varchar(30) not null, \r\nprimary key(GroupID, username), \r\nforeign key (username) references users(username), \r\nforeign key (groupid) references groups(groupid))");
-            ExecuteNonQuery("create table GroupChat(\r\ngroupID int not null,\r\nusername varchar(30) not null, \r\nmessage_date datetime not null,\r\nmessage varchar(150),\r\nprimary key(username, message_date))");
+            ExecuteNonQuery("create table GroupChat(\r\ngroup_name varchar(30) not null,\r\nusername varchar(30) not null, \r\nmessage_date datetime not null,\r\nmessage varchar(150),\r\nprimary key(username, message_date))");
         }
 
         public List<string> GetDirectChatMessages(string them)
