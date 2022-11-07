@@ -264,6 +264,7 @@ order by Message_Date asc";
 
 
         // TO DO
+        //GROUP STUFF
         public List<string> GetGroups()
         {
             List<string> messages = new List<string>();
@@ -272,7 +273,7 @@ order by Message_Date asc";
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("select groupname from groups", conn);
+                SqlCommand cmd = new SqlCommand("select group_name from groups", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -299,49 +300,53 @@ order by Message_Date asc";
         {
             List<string> messages = new List<string>();
 
-//            string qry = $@"select * from DirectMessage 
-//where (sender = '{ChatWindow.Username}' 
-//and receiver = '{them}') 
-//or (Sender = '{them}' and receiver = '{ChatWindow.Username}') 
-//order by Message_Date asc";
+            string qry = $@"select * from GroupChat where group_name = {group} order by Message_Date asc";
 
 
-            //SqlConnection conn = new SqlConnection(connectionString);
-            //try
-            //{
-            //    conn.Open();
-            //    SqlCommand cmd = new SqlCommand(qry, conn);
-            //    SqlDataReader reader = cmd.ExecuteReader();
-            //    while (reader.Read())
-            //    {
-            //        //gets the current message from the db because we are reading line by line
-            //        string currentMessage = reader[0] + ":" + reader[3];
-            //        messages.Add(currentMessage);
-            //        //object tmp = reader[0];
-            //    }
-            //}
-            //catch
-            //{
-
-            //}
-            //finally
-            //{
-            //    conn.Close();
-            //}
-            //ExecuteDataReader("select * from chat");
-
+            SqlConnection conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(qry, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    //gets the current message from the db because we are reading line by line
+                    string currentMessage = reader[0].ToString();
+                    messages.Add(currentMessage);
+                    //object tmp = reader[0];
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
             return messages;
         }
 
-        public bool SendGroupMessage(string group, string recipient, string message)
+        public bool SendGroupMessage(string group, string message)
         { //think this should work? no error checking here tho
             bool ret = true;
 
-            string qry = $"insert into GroupChat values (group, '{ChatWindow.Username}','{recipient}',getdate(),'{message}')";
+            string qry = $"use chatdb insert into GroupChat values ('group', '{ChatWindow.Username}',getdate(),'{message}')";
             ret = ExecuteNonQuery(qry);
 
 
             return ret;
+        }
+
+        public bool RegisterGroup(string name)
+        {
+            return this.ExecuteNonQuery($"use chatdb insert into groups values('{name}')");
+        }
+
+        public bool RegisterGroupUser(string groupName, string username)
+        {
+            return this.ExecuteNonQuery($"insert into groupusers values('{username}','{groupName}')");
         }
     }
 }

@@ -49,7 +49,7 @@
             this.txtUsername.Location = new System.Drawing.Point(97, 12);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(120, 23);
-            this.txtUsername.TabIndex = 1;
+            this.txtUsername.TabIndex = 0;
             // 
             // label2
             // 

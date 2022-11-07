@@ -34,6 +34,7 @@
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.lstMessages = new System.Windows.Forms.ListBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnNew = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstGroups
@@ -74,13 +75,25 @@
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(412, 259);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(129, 23);
+            this.btnNew.TabIndex = 12;
+            this.btnNew.Text = "Create New Group";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // GroupChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(556, 294);
+            this.Controls.Add(this.btnNew);
             this.Controls.Add(this.lstGroups);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
@@ -99,5 +112,6 @@
         private TextBox txtMessage;
         private ListBox lstMessages;
         private System.Windows.Forms.Timer timer1;
+        private Button btnNew;
     }
 }

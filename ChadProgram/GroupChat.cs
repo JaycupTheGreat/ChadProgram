@@ -12,17 +12,23 @@ namespace ChadProgram
 {
     public partial class GroupChat : Form
     {
+        SQLDataLayer dl = new SQLDataLayer();
+        bool selected = false;
+
         List<string> chatMessages = new List<string>();
         List<string> chatGroups = new List<string>();
 
         public GroupChat()
         {
             InitializeComponent();
+            lstGroups.DataSource = chatGroups;
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            SQLDataLayer dl = new();
+            if (selected)
+                dl.SendGroupMessage(lstGroups.SelectedValue.ToString(), txtMessage.Text);
+            lstGroups.DataSource = chatGroups;
             //here use index selected in listbox to get the group to send it to 
             //dl.SendGroupMessage(); 
         }
@@ -30,14 +36,6 @@ namespace ChadProgram
         private void timer1_Tick(object sender, EventArgs e)
         {
             //update the listbox with the messages from the group that is the selected index in the groups listbox
-            SQLDataLayer dl = new SQLDataLayer();
-            //List<string> messages = dl.GetChatMessages();
-            //if (messages.Count > chatMessages.Count)
-            //{
-            //    lstMessages.DataSource = messages;
-            //    chatMessages = messages;
-            //    lstMessages.SelectedIndex = lstMessages.Items.Count - 1;
-            //}
 
             //should constantly update the groups listbox with all current existing groups
             List<string> groups = dl.GetGroups();
@@ -45,8 +43,28 @@ namespace ChadProgram
             {
                 chatGroups = groups;
                 lstGroups.DataSource = chatGroups;
-                lstGroups.SelectedIndex = lstGroups.Items.Count - 1; 
+                lstGroups.SelectedIndex = lstGroups.Items.Count - 1;
             }
+            if (lstGroups.SelectedIndex > -1) //if something is selected
+            {
+                //get the group from the selected index in the listbox
+                List<string> tmp = dl.GetDirectChatMessages(lstGroups.SelectedValue.ToString());
+                if (tmp.Count > chatMessages.Count || tmp != null)
+                {
+                    selected = true;
+                    chatMessages = tmp;
+                    lstMessages.DataSource = chatMessages;
+                    lstMessages.SelectedIndex = lstMessages.Items.Count - 1;
+                }
+            }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            NewGroupForm frm = new NewGroupForm();
+            frm.Show();
+            lstGroups.DataSource = chatGroups;
+
         }
     }
 }
