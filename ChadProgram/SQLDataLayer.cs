@@ -297,7 +297,7 @@ order by Message_Date asc";
         {
             List<string> messages = new List<string>();
 
-            string qry = $@"select message from GroupChat where group_name = '{group}' order by Message_Date asc";
+            string qry = $@"select * from GroupChat where group_name = '{group}' order by Message_Date asc";
 
 
             SqlConnection conn = new SqlConnection(connectionString);
@@ -309,7 +309,7 @@ order by Message_Date asc";
                 while (reader.Read())
                 {
                     //gets the current message from the db because we are reading line by line
-                    string currentMessage = reader[0].ToString();
+                    string currentMessage = reader[1] + ":" + reader[3];
                     messages.Add(currentMessage);
                     //object tmp = reader[0];
                 }
