@@ -27,7 +27,11 @@ namespace ChadProgram
         private void btnSend_Click(object sender, EventArgs e)
         {
             if (selected)
+            {
                 dl.SendGroupMessage(lstGroups.SelectedValue.ToString(), txtMessage.Text);
+                txtMessage.Text = "";
+
+            }
             lstGroups.DataSource = chatGroups;
             //here use index selected in listbox to get the group to send it to 
             //dl.SendGroupMessage(); 
@@ -38,7 +42,7 @@ namespace ChadProgram
             //update the listbox with the messages from the group that is the selected index in the groups listbox
 
             //should constantly update the groups listbox with all current existing groups
-            List<string> groups = dl.GetGroups();
+            List<string> groups = dl.GetGroups(ChatWindow.Username);
             if (groups.Count > chatGroups.Count)
             {
                 chatGroups = groups;
@@ -48,13 +52,14 @@ namespace ChadProgram
             if (lstGroups.SelectedIndex > -1) //if something is selected
             {
                 //get the group from the selected index in the listbox
-                List<string> tmp = dl.GetDirectChatMessages(lstGroups.SelectedValue.ToString());
+               // List<string> tmp = dl.GetDirectChatMessages(lstGroups.SelectedValue.ToString());
+                List<string> tmp = dl.GetGroupChatMessages(lstGroups.SelectedValue.ToString());
                 if (tmp.Count > chatMessages.Count || tmp != null)
                 {
                     selected = true;
                     chatMessages = tmp;
                     lstMessages.DataSource = chatMessages;
-                    lstMessages.SelectedIndex = lstMessages.Items.Count - 1;
+                    lstMessages.SelectedIndex = lstMessages.Items.Count - 1; //reselect the last item
                 }
             }
         }
@@ -65,6 +70,11 @@ namespace ChadProgram
             frm.Show();
             lstGroups.DataSource = chatGroups;
 
+        }
+
+        private void lstGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //selected = true;
         }
     }
 }

@@ -46,6 +46,7 @@
             this.lstGroups.Name = "lstGroups";
             this.lstGroups.Size = new System.Drawing.Size(129, 214);
             this.lstGroups.TabIndex = 11;
+            this.lstGroups.SelectedIndexChanged += new System.EventHandler(this.lstGroups_SelectedIndexChanged);
             // 
             // btnSend
             // 

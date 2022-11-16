@@ -228,10 +228,7 @@ foreign key (receiver) references Users(Username)
         {
             List<string> messages = new List<string>();
 
-            string qry = $@"select * from DirectMessage 
-where (sender = '{ChatWindow.Username}' 
-and receiver = '{them}') 
-or (Sender = '{them}' and receiver = '{ChatWindow.Username}') 
+            string qry = $@"select * from DirectMessage where (sender = '{ChatWindow.Username}' and receiver = '{them}') or (Sender = '{them}' and receiver = '{ChatWindow.Username}') 
 order by Message_Date asc";
 
 
@@ -265,7 +262,7 @@ order by Message_Date asc";
 
         // TO DO
         //GROUP STUFF
-        public List<string> GetGroups()
+        public List<string> GetGroups(string user)
         {
             List<string> messages = new List<string>();
 
@@ -273,7 +270,7 @@ order by Message_Date asc";
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("select group_name from groups", conn);
+                SqlCommand cmd = new SqlCommand($"select group_name from groupusers where username = '{user}'", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -300,7 +297,7 @@ order by Message_Date asc";
         {
             List<string> messages = new List<string>();
 
-            string qry = $@"select * from GroupChat where group_name = {group} order by Message_Date asc";
+            string qry = $@"select message from GroupChat where group_name = '{group}' order by Message_Date asc";
 
 
             SqlConnection conn = new SqlConnection(connectionString);
@@ -332,7 +329,7 @@ order by Message_Date asc";
         { //think this should work? no error checking here tho
             bool ret = true;
 
-            string qry = $"use chatdb insert into GroupChat values ('group', '{ChatWindow.Username}',getdate(),'{message}')";
+            string qry = $"use chatdb insert into GroupChat values ('{group}', '{ChatWindow.Username}',getdate(),'{message}')";
             ret = ExecuteNonQuery(qry);
 
 
