@@ -35,9 +35,10 @@
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(37, 42);
+            this.btnRegister.Location = new System.Drawing.Point(12, 13);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(207, 184);
+            this.btnRegister.Size = new System.Drawing.Size(243, 50);
             this.btnRegister.TabIndex = 0;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -45,9 +46,10 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(278, 42);
+            this.btnLogin.Location = new System.Drawing.Point(276, 13);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(207, 184);
+            this.btnLogin.Size = new System.Drawing.Size(243, 50);
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -55,22 +57,25 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(172, 241);
+            this.btnTest.Location = new System.Drawing.Point(197, 321);
+            this.btnTest.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(168, 23);
+            this.btnTest.Size = new System.Drawing.Size(192, 31);
             this.btnTest.TabIndex = 1;
             this.btnTest.Text = "Test";
             this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Visible = false;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 286);
+            this.ClientSize = new System.Drawing.Size(530, 79);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnRegister);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);

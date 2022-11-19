@@ -49,6 +49,7 @@ namespace ChadProgram
         {
             Login login = new Login();
             login.Show();
+            this.Hide();
         }
     }
 }

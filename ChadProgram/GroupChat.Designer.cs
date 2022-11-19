@@ -40,19 +40,19 @@
             // lstGroups
             // 
             this.lstGroups.FormattingEnabled = true;
-            this.lstGroups.ItemHeight = 15;
-            this.lstGroups.Location = new System.Drawing.Point(412, 39);
-            this.lstGroups.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lstGroups.ItemHeight = 20;
+            this.lstGroups.Location = new System.Drawing.Point(476, 12);
             this.lstGroups.Name = "lstGroups";
-            this.lstGroups.Size = new System.Drawing.Size(129, 214);
+            this.lstGroups.Size = new System.Drawing.Size(147, 284);
             this.lstGroups.TabIndex = 11;
             this.lstGroups.SelectedIndexChanged += new System.EventHandler(this.lstGroups_SelectedIndexChanged);
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(287, 259);
+            this.btnSend.Location = new System.Drawing.Point(333, 305);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(104, 23);
+            this.btnSend.Size = new System.Drawing.Size(119, 31);
             this.btnSend.TabIndex = 8;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -60,18 +60,20 @@
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(12, 259);
+            this.txtMessage.Location = new System.Drawing.Point(19, 305);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(269, 23);
+            this.txtMessage.Size = new System.Drawing.Size(307, 27);
             this.txtMessage.TabIndex = 7;
             // 
             // lstMessages
             // 
             this.lstMessages.FormattingEnabled = true;
-            this.lstMessages.ItemHeight = 15;
-            this.lstMessages.Location = new System.Drawing.Point(12, 39);
+            this.lstMessages.ItemHeight = 20;
+            this.lstMessages.Location = new System.Drawing.Point(19, 12);
+            this.lstMessages.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lstMessages.Name = "lstMessages";
-            this.lstMessages.Size = new System.Drawing.Size(379, 214);
+            this.lstMessages.Size = new System.Drawing.Size(433, 284);
             this.lstMessages.TabIndex = 6;
             // 
             // timer1
@@ -81,9 +83,10 @@
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(412, 259);
+            this.btnNew.Location = new System.Drawing.Point(476, 305);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(129, 23);
+            this.btnNew.Size = new System.Drawing.Size(147, 31);
             this.btnNew.TabIndex = 12;
             this.btnNew.Text = "Create New Group";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -91,14 +94,15 @@
             // 
             // GroupChat
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 294);
+            this.ClientSize = new System.Drawing.Size(635, 353);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.lstGroups);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.lstMessages);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "GroupChat";
             this.Text = "GroupChat";
             this.ResumeLayout(false);

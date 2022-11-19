@@ -27,6 +27,7 @@ namespace ChadProgram
             {
                 ChatWindow chat = new ChatWindow(txtUsername.Text);
                 chat.Show();
+                this.Hide();
             }
             else
             {
