@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 namespace ChadProgram
 {
@@ -346,6 +347,26 @@ order by Message_Date asc";
         {
             List<string> userInfo = new List<string>();
             //throw user info into a list
+            string qry = $@"select first_name, last_name, last_message from users where username = '{username}'";
+            
+
+
+            SqlConnection conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(qry, conn);
+                string firstName = cmd.Parameters[0].ToString();
+                
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
 
             return userInfo;
         }

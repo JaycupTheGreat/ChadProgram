@@ -88,18 +88,18 @@
             this.lblFirst.AutoSize = true;
             this.lblFirst.Location = new System.Drawing.Point(200, 58);
             this.lblFirst.Name = "lblFirst";
-            this.lblFirst.Size = new System.Drawing.Size(44, 20);
+            this.lblFirst.Size = new System.Drawing.Size(109, 20);
             this.lblFirst.TabIndex = 5;
-            this.lblFirst.Text = "temp";
+            this.lblFirst.Text = "None provided";
             // 
             // lblLast
             // 
             this.lblLast.AutoSize = true;
             this.lblLast.Location = new System.Drawing.Point(200, 93);
             this.lblLast.Name = "lblLast";
-            this.lblLast.Size = new System.Drawing.Size(44, 20);
+            this.lblLast.Size = new System.Drawing.Size(109, 20);
             this.lblLast.TabIndex = 5;
-            this.lblLast.Text = "temp";
+            this.lblLast.Text = "None provided";
             // 
             // lblLastMessage
             // 
