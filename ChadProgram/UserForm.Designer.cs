@@ -106,9 +106,9 @@
             this.lblLastMessage.AutoSize = true;
             this.lblLastMessage.Location = new System.Drawing.Point(200, 135);
             this.lblLastMessage.Name = "lblLastMessage";
-            this.lblLastMessage.Size = new System.Drawing.Size(44, 20);
+            this.lblLastMessage.Size = new System.Drawing.Size(69, 20);
             this.lblLastMessage.TabIndex = 5;
-            this.lblLastMessage.Text = "temp";
+            this.lblLastMessage.Text = "None yet";
             // 
             // UserForm
             // 

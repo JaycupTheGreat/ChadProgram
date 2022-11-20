@@ -12,9 +12,10 @@ namespace ChadProgram
 {
     public partial class UserForm : Form
     {
-        public UserForm()
+        public UserForm(string username)
         {
             InitializeComponent();
+            //run sql command here
         }
     }
 }

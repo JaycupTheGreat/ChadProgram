@@ -342,5 +342,13 @@ order by Message_Date asc";
             return this.ExecuteNonQuery($"insert into groupusers values('{username}','{groupName}')");
         }
 
+        public List<string> GetUserInfo(string username)
+        {
+            List<string> userInfo = new List<string>();
+            //throw user info into a list
+
+            return userInfo;
+        }
+
     }
 }
