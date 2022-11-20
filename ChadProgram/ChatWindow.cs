@@ -19,7 +19,7 @@ namespace ChadProgram
         List<string> chatUsers = new List<string>();
 
 
-        public static string Username;
+        public static string? Username;
         //SqlConnection conn;
         public ChatWindow(string username)
         {
@@ -29,26 +29,7 @@ namespace ChadProgram
             lblUsername.Text = username;
 
         }
-        //public void SendMessage(string message)
-        //{
-        //    try
-        //    {
-        //        //this.conn.Open();
-        //        string qry = $"insert into chat values('{ChatWindow.Username}',getdate(),'{message}')";
-        //        SqlCommand cmd = new SqlCommand(qry, conn);
-        //        //executenonquery is for no results returned
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //    catch
-        //    {
-        //        throw;
-        //    }
-        //    finally
-        //    {
-        //        conn.Close();
-        //    }
-        //}
-
+       
         private void btnSend_Click(object sender, EventArgs e)
         {
             SQLDataLayer dl = new SQLDataLayer();

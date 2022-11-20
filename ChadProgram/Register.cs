@@ -35,20 +35,6 @@ namespace ChadProgram
             {
                 MessageBox.Show("You failed to make a new user");
             }
-            //try
-            //{
-            //    conn.Open();
-            //    SqlCommand cmd = new SqlCommand("insert into users(username, password, register_date) values ('" + txtName.Text + "','"+txtPass.Text+"',getdate())", conn);
-            //    cmd.ExecuteNonQuery();
-            //}
-            //catch
-            //{
-            //    throw;
-            //}
-            //finally
-            //{
-            //    conn.Close();
-            //}
         }
     }
 }

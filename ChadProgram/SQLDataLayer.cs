@@ -177,8 +177,12 @@ namespace ChadProgram
         {
             bool ret = true;
 
+            ret = ExecuteNonQuery($"update users set last_message = getdate() where username = '{ChatWindow.Username}'");
+
             string qry = $"insert into chat values('{ChatWindow.Username}',getdate(),'{message}')";
-            ret = ExecuteNonQuery(qry);
+
+            if (ret)
+                ret = ExecuteNonQuery(qry);
             return ret;
         }
 
@@ -188,14 +192,6 @@ namespace ChadProgram
 
             string qry = $"insert into DirectMessage values ('{ChatWindow.Username}','{recipient}',getdate(),'{message}')";
             ret = ExecuteNonQuery(qry);
-
-
-            return ret;
-        }
-
-        public bool GetDirectMessages(string otherUser)
-        {
-            bool ret = true;
 
 
             return ret;
@@ -345,5 +341,6 @@ order by Message_Date asc";
         {
             return this.ExecuteNonQuery($"insert into groupusers values('{username}','{groupName}')");
         }
+
     }
 }
