@@ -166,6 +166,15 @@ namespace ChadProgram
                 "values ('" + username + "','" + password + "',getdate())");
         }
 
+        public bool FirstName(string username, string firstname)
+        {
+            return this.ExecuteNonQuery($"update users set first_name = '{firstname}' where username = '{username}'");
+        }
+        public bool LastName(string username, string lastname)
+        {
+            return this.ExecuteNonQuery($"update users set last_name = '{lastname}' where username = '{username}'");
+        }
+
         public bool Login(string username, string password)
         {
             int count = (int)ExecuteScalar($"select count(*) from users where username = '{username}' and password = '{password}' ");
@@ -356,8 +365,18 @@ order by Message_Date asc";
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(qry, conn);
-                string firstName = cmd.Parameters[0].ToString();
-                
+                //string firstName = cmd.Parameters[0].ToString();
+                //MessageBox.Show(cmd.Parameters[0].ToString());
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    //gets the current message from the db because we are reading line by line
+                    userInfo.Add(reader[0].ToString());
+                    userInfo.Add(reader[1].ToString());
+                    userInfo.Add(reader[2].ToString());
+                   
+                    //object tmp = reader[0];
+                }
             }
             catch
             {

@@ -29,7 +29,14 @@ namespace ChadProgram
             if (registerWorked)
             {
                 MessageBox.Show("Success");
-                
+                if (txtFirstName.Text != "")
+                {
+                    dl.FirstName(txtName.Text, txtFirstName.Text);
+                }
+                if (txtLastName.Text != "")
+                {
+                    dl.LastName(txtName.Text, txtLastName.Text);
+                }
             }
             else
             {

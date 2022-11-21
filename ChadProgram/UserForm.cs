@@ -12,10 +12,21 @@ namespace ChadProgram
 {
     public partial class UserForm : Form
     {
+        List<string> lstUserInfo = new List<string>(); 
+            SQLDataLayer dl = new SQLDataLayer();
         public UserForm(string username)
         {
             InitializeComponent();
             //run sql command here
+            
+            foreach(var item in dl.GetUserInfo(username))
+            {
+                lstUserInfo.Add(item);
+            }
+            lblUsername.Text = username;
+            lblFirst.Text = lstUserInfo[0];
+            lblLast.Text = lstUserInfo[1];
+            lblLastMessage.Text = lstUserInfo[2];
         }
     }
 }

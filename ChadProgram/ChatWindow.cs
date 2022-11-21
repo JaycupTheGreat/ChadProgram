@@ -67,8 +67,11 @@ namespace ChadProgram
         {
             if (lstUsers.SelectedIndex != -1)
             {
-                DirectMessage dm = new DirectMessage(lstUsers.SelectedValue?.ToString());
-                dm.Show();
+                //DirectMessage dm = new DirectMessage(lstUsers.SelectedValue?.ToString());
+                //dm.Show();
+                //put this back
+                UserForm uf = new UserForm(lstUsers.SelectedValue?.ToString());
+                uf.Show();
             }
         }
 
