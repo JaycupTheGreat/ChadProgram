@@ -162,7 +162,7 @@ namespace ChadProgram
 
         public bool RegisterUser(string username, string password)
         {
-            return this.ExecuteNonQuery("insert into users(username, password, register_date) " +
+            return this.ExecuteNonQuery(@"insert into users(username, password, register_date) " +
                 "values ('" + username + "','" + password + "',getdate())");
         }
 
@@ -209,7 +209,7 @@ namespace ChadProgram
 
         public void SetUpDatabase()
         {
-            string createUser = "create table Users(username varchar(30) primary key, [password] varchar(30), register_date datetime)";
+            string createUser = "CREATE TABLE [dbo].[Users](\r\n    [username] [varchar](30) NOT NULL,\r\n    [password] [varchar](30) NOT NULL,\r\n    [register_date] [datetime] NOT NULL,\r\n    [first_name] [varchar](30) NULL,\r\n    [last_name] [varchar](30) NULL,\r\n    [last_message] [datetime] NULL,\r\n    [last_updated] [datetime] NULL,\r\n ) ";
             string createChat = "create table Chat(username varchar(30), message_date datetime primary key(username,message_date), [message] varchar(150), foreign key (username) references users(username))";
 
             string createDirectMessages = @"create table DirectMessage (
@@ -234,7 +234,7 @@ foreign key (receiver) references Users(Username)
         {
             List<string> messages = new List<string>();
 
-            string qry = $@"select * from DirectMessage where (sender = '{ChatWindow.Username}' and receiver = '{them}') or (Sender = '{them}' and receiver = '{ChatWindow.Username}') 
+            string qry = $@"select * from DirectMessage where (sender = '@username' and receiver = '@them') or (Sender = '@them' and receiver = '@username') 
 order by Message_Date asc";
 
 
@@ -243,6 +243,8 @@ order by Message_Date asc";
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(qry, conn);
+                cmd.Parameters.AddWithValue(@"them", them);
+                cmd.Parameters.AddWithValue(@"username", ChatWindow.Username);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -276,7 +278,8 @@ order by Message_Date asc";
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand($"select group_name from groupusers where username = '{user}'", conn);
+                SqlCommand cmd = new SqlCommand($"select group_name from groupusers where username = '@user'", conn);
+                cmd.Parameters.AddWithValue("@user", user);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
