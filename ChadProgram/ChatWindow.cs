@@ -77,7 +77,7 @@ namespace ChadProgram
 
         private void btnNotifications_Click(object sender, EventArgs e)
         {
-            //open the notifications form here
+
         }
 
         private void btnGroups_Click(object sender, EventArgs e)
@@ -85,6 +85,15 @@ namespace ChadProgram
             //open groupchat form here
             GroupChat gp = new GroupChat();
             gp.Show();
+        }
+
+        private void lstUsers_MouseDown(object sender, MouseEventArgs e)
+        { //right click
+            if (e.Button == MouseButtons.Right)
+            {
+                FriendsForm f = new FriendsForm();
+                f.Show();
+            }
         }
     }
 }

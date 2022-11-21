@@ -36,7 +36,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblUsername = new System.Windows.Forms.Label();
             this.lstUsers = new System.Windows.Forms.ListBox();
-            this.btnNotifications = new System.Windows.Forms.Button();
             this.btnGroups = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -101,16 +100,7 @@
             this.lstUsers.Size = new System.Drawing.Size(129, 214);
             this.lstUsers.TabIndex = 5;
             this.lstUsers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstUsers_MouseDoubleClick);
-            // 
-            // btnNotifications
-            // 
-            this.btnNotifications.Location = new System.Drawing.Point(410, 6);
-            this.btnNotifications.Name = "btnNotifications";
-            this.btnNotifications.Size = new System.Drawing.Size(129, 23);
-            this.btnNotifications.TabIndex = 3;
-            this.btnNotifications.Text = "Notifications";
-            this.btnNotifications.UseVisualStyleBackColor = true;
-            this.btnNotifications.Click += new System.EventHandler(this.btnNotifications_Click);
+            this.lstUsers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lstUsers_MouseDown);
             // 
             // btnGroups
             // 
@@ -130,7 +120,6 @@
             this.Controls.Add(this.lstUsers);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.btnGroups);
-            this.Controls.Add(this.btnNotifications);
             this.Controls.Add(this.btnGetMessages);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
@@ -151,7 +140,6 @@
         private System.Windows.Forms.Timer timer1;
         private Label lblUsername;
         private ListBox lstUsers;
-        private Button btnNotifications;
         private Button btnGroups;
     }
 }

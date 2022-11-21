@@ -228,6 +228,7 @@ foreign key (receiver) references Users(Username)
             ExecuteNonQuery("create table Groups(GroupID int not null identity(1,1), GroupName varchar(20) not null, primary key(GroupID));");
             ExecuteNonQuery("create table GroupUsers(\r\nGroupID int not null, \r\nusername varchar(30) not null, \r\nprimary key(GroupID, username), \r\nforeign key (username) references users(username), \r\nforeign key (groupid) references groups(groupid))");
             ExecuteNonQuery("create table GroupChat(\r\ngroup_name varchar(30) not null,\r\nusername varchar(30) not null, \r\nmessage_date datetime not null,\r\nmessage varchar(150),\r\nprimary key(username, message_date))");
+           // ExecuteNonQuery("CREATE TABLE Friends(\r\n\t[user1] [varchar](30) NOT NULL,\r\n\t[user2] [varchar](30) NOT NULL)")
         }
 
         public List<string> GetDirectChatMessages(string them)
@@ -306,7 +307,7 @@ order by Message_Date asc";
         {
             List<string> messages = new List<string>();
 
-            string qry = $@"select * from GroupChat where group_name = '{group}' order by Message_Date asc";
+            string qry = $@"select * from GroupChat where group_name = '@group' order by Message_Date asc";
 
 
             SqlConnection conn = new SqlConnection(connectionString);
@@ -314,6 +315,7 @@ order by Message_Date asc";
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(qry, conn);
+                cmd.Parameters.AddWithValue("@group", group);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -359,7 +361,7 @@ order by Message_Date asc";
         {
             List<string> userInfo = new List<string>();
             //throw user info into a list
-            string qry = $@"select first_name, last_name, last_message from users where username = '{username}'";
+            string qry = $@"select first_name, last_name, last_message from users where username = '@username'";
             
 
 
@@ -368,6 +370,7 @@ order by Message_Date asc";
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(qry, conn);
+                cmd.Parameters.AddWithValue("@username", username);
                 //string firstName = cmd.Parameters[0].ToString();
                 //MessageBox.Show(cmd.Parameters[0].ToString());
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -391,6 +394,18 @@ order by Message_Date asc";
             }
 
             return userInfo;
+        }
+
+        public bool FriendRequest(string user1, string user2)
+        { //sending of request initially
+            bool ret;
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            string qry = $"use chatdb insert into Friends values ('@user1', '@user2',0)"; //bit 0 is not accepted
+            SqlCommand cmd = new SqlCommand(qry, conn);
+            cmd.Parameters.AddWithValue("@user1", user1);
+            cmd.Parameters.AddWithValue("@user2", user2);
+            return ret = ExecuteNonQuery(qry);
         }
 
     }
